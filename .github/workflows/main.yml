@@ -14,9 +14,8 @@ jobs:
     runs-on: windows-2019
 
     steps:
-    - name: Install package
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.11' 
       run: |
@@ -29,6 +28,7 @@ jobs:
         # cd ..
         # mkdir foo
         # tar.exe -a -c -f foo/pyvir.zip pyvir
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
