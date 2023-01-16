@@ -32,8 +32,8 @@ jobs:
         # cd ..
         # tar.exe -a -c -f win-py311.zip pyvir
         # mkdir foo
-        echo $env:Python3_ROOT_DIR
-        tar.exe -a -c -f py311.zip $env:Python3_ROOT_DIR
+        echo $env:Python3_ROOT_DIR'\Lib\site-packages'
+        tar.exe -a -c -f py311.zip $env:Python3_ROOT_DIR'\Lib\site-packages'
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
