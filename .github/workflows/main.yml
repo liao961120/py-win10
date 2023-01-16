@@ -12,27 +12,63 @@ jobs:
   build:
     if: "!contains(github.event.commits[0].message, '[skip ci]')"
     runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: ['3.11']
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11' 
+    - uses: actions/checkout@v2
+    - name: Install package
       run: |
-        python --version
-        python -c "import sys; print('\n'.join(sys.path))"
-        # python -m venv pyvir
-        # cd pyvir
-        # Scripts\activate.bat
-        # pip3.11 install snakemake==7.6.2
-        # cd ..
-        # mkdir foo
-        # tar.exe -a -c -f foo/pyvir.zip pyvir
-
+        python -m venv pyvir
+        cd pyvir
+        Scripts\activate.bat
+        pip install snakemake==7.6.2
+        cd ..
+        mkdir foo
+        tar.exe -a -c -f foo/pyvir.zip pyvir
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./foo
         enable_jekyll: false
+
+# # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+# name: Build Python Windows10 Package
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     if: "!contains(github.event.commits[0].message, '[skip ci]')"
+#     runs-on: windows-2019
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - uses: actions/setup-python@v4
+#       with:
+#         python-version: '3.11' 
+#       run: |
+#         python --version
+#         python -c "import sys; print('\n'.join(sys.path))"
+#         # python -m venv pyvir
+#         # cd pyvir
+#         # Scripts\activate.bat
+#         # pip3.11 install snakemake==7.6.2
+#         # cd ..
+#         # mkdir foo
+#         # tar.exe -a -c -f foo/pyvir.zip pyvir
+
+#     - name: Deploy
+#       uses: peaceiris/actions-gh-pages@v3
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         publish_dir: ./foo
+#         enable_jekyll: false
 
