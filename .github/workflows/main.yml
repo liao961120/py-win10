@@ -24,10 +24,8 @@ jobs:
       run: |
         python --version
         python -c "import sys; print('\n'.join(sys.path))"
-        # python -m venv pyvir
-        # cd pyvir
-        # Scripts\activate.bat
-        # pip install snakemake==7.6.2
+        pip install snakemake==7.6.2
+        tar.exe -a -c -f win-py311.zip C:\hostedtoolcache\windows\Python\3.11.1\x64\
         # cd ..
         # mkdir foo
         # tar.exe -a -c -f foo/pyvir.zip pyvir
@@ -35,7 +33,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./foo
+        publish_dir: ./
         enable_jekyll: false
 
 # # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
