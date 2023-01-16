@@ -32,7 +32,7 @@ jobs:
         # cd ..
         # tar.exe -a -c -f win-py311.zip pyvir
         # mkdir foo
-        tar.exe -a -c -f py311.zip ${{ Python3_ROOT_DIR }}
+        tar.exe -a -c -f py311.zip $Python3_ROOT_DIR
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
