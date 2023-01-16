@@ -22,11 +22,15 @@ jobs:
         python-version: '3.11' 
     - name: Install package
       run: |
+        # python -m venv pyvir
+        # cd pyvir
+        # Scripts\activate.bat
         python --version
         python -c "import sys; print('\n'.join(sys.path))"
         pip install snakemake==7.6.2
-        tar.exe -a -c -f win-py311.zip C:\hostedtoolcache\windows\Python\3.11.1\x64\
+        python -c "import snakemake, os; print(os.path.dirname(snakemake.__file__))"
         # cd ..
+        # tar.exe -a -c -f win-py311.zip pyvir
         # mkdir foo
         # tar.exe -a -c -f foo/pyvir.zip pyvir
     - name: Deploy
