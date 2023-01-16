@@ -12,18 +12,20 @@ jobs:
   build:
     if: "!contains(github.event.commits[0].message, '[skip ci]')"
     runs-on: windows-2019
-    strategy:
-      matrix:
-        python-version: ['3.11']
 
     steps:
-    - uses: actions/checkout@v2
     - name: Install package
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11' 
       run: |
+        python --version
+        python -c "import sys; print('\n'.join(sys.path))"
         python -m venv pyvir
         cd pyvir
         Scripts\activate.bat
-        pip install snakemake==7.6.2
+        pip3.11 install snakemake==7.6.2
         cd ..
         mkdir foo
         tar.exe -a -c -f foo/pyvir.zip pyvir
