@@ -24,6 +24,7 @@ jobs:
         cd pyvir
         Scripts\activate.bat
         pip install snakemake==7.6.2
+        cd ..
         mkdir foo
         tar.exe -a -c -f foo/pyvir.zip pyvir
 
