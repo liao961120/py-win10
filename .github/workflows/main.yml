@@ -15,21 +15,19 @@ jobs:
 
     steps:
     - name: Install package
-    - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11' 
       run: |
         python --version
         python -c "import sys; print('\n'.join(sys.path))"
-        python -m venv pyvir
-        cd pyvir
-        Scripts\activate.bat
-        pip3.11 install snakemake==7.6.2
-        cd ..
-        mkdir foo
-        tar.exe -a -c -f foo/pyvir.zip pyvir
-
+        # python -m venv pyvir
+        # cd pyvir
+        # Scripts\activate.bat
+        # pip3.11 install snakemake==7.6.2
+        # cd ..
+        # mkdir foo
+        # tar.exe -a -c -f foo/pyvir.zip pyvir
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
